@@ -1,47 +1,42 @@
-📘 Project: Analyzing Students' Mental Health
+# 📘 Project: Analyzing Students' Mental Health
 
-📌 Overview
-This project investigates how studying abroad affects the mental health of university students, using real survey data collected at a Japanese international university. The original 2018 study, published in 2019 and ethically approved, found that international students face higher risks of mental health challenges than domestic peers. It also identified social connectedness and acculturative stress as key predictors of depression.
+## 📌 Overview
+This project investigates how studying abroad affects the mental health of university students, using real survey data collected at a Japanese international university. The original 2018 study, published in 2019 and ethically approved, found that international students face higher risks of mental health challenges than domestic peers. It also identified **social connectedness** and **acculturative stress** as key predictors of depression.
 
-In this project, we used PostgreSQL to explore and analyze a dataset of 286 students to determine:
+In this project, we used **PostgreSQL** to explore and analyze a dataset of 286 students to determine:
 
-Whether international students show higher levels of depression.
+- Whether international students show higher levels of depression.
+- How social connectedness and acculturative stress relate to depression scores.
+- Whether the length of stay in the host country is a contributing factor to mental health outcomes.
 
-How social connectedness and acculturative stress relate to depression scores.
+---
 
-Whether the length of stay in the host country is a contributing factor to mental health outcomes.
-
-
-🧠 Key Mental Health Metrics
+## 🧠 Key Mental Health Metrics
 The dataset includes scores from standardized psychological assessments:
 
-PHQ-9 (todep) — measures depression
+- **PHQ-9** (`todep`) — measures depression  
+- **SCS** (`tosc`) — measures social connectedness  
+- **ASISS** (`toas`) — measures acculturative stress  
 
-SCS (tosc) — measures social connectedness
+---
 
-ASISS (toas) — measures acculturative stress
+## 🛠️ Tools Used
+- **PostgreSQL** for querying and analyzing data  
+- **DataCamp DataLab** as the notebook environment  
+- **GitHub** for version control and collaboration  
 
+---
 
-🛠️ Tools Used
-PostgreSQL for querying and analyzing data
+## 🔍 Insights Gained
+- International students generally show higher average PHQ-9 scores.
+- Depression correlates **negatively** with social connectedness and **positively** with acculturative stress.
+- The length of stay influences mental health outcomes: newly arrived students often show different average scores compared to those who have been in the country longer.
 
-DataCamp DataLab as the notebook environment
+---
 
-GitHub for version control and collaboration
+## 📊 Sample Query Used
 
-
-🔍 Insights Gained
-International students generally show higher average PHQ-9 scores.
-
-Depression correlates negatively with social connectedness and positively with acculturative stress.
-
-The length of stay influences mental health outcomes: newly arrived students often show different average scores compared to those who have been in the country longer.
-
-
-📊 Sample Query Used
-sql
-Copy
-Edit
+```sql
 SELECT stay,
        COUNT(*) AS count_int,
        ROUND(AVG(todep), 2) AS average_phq,
@@ -53,18 +48,95 @@ GROUP BY stay
 ORDER BY stay DESC
 LIMIT 9;
 
+| Field Name     | Description                              |
+| -------------- | ---------------------------------------- |
+| inter\_dom     | Student type (International or Domestic) |
+| japanese\_cate | Japanese language proficiency            |
+| english\_cate  | English language proficiency             |
+| academic       | Academic level (Undergraduate/Graduate)  |
+| age            | Age of the student                       |
+| stay           | Length of stay in years                  |
+| todep          | PHQ-9 depression score                   |
+| tosc           | SCS social connectedness score           |
+| toas           | ASISS acculturative stress score         |
 
-📁 Dataset Fields
-Field Name	Description
-inter_dom	Student type (International or Domestic)
-japanese_cate	Japanese language proficiency
-english_cate	English language proficiency
-academic	Academic level (Undergraduate/Graduate)
-age	Age of the student
-stay	Length of stay in years
-todep	PHQ-9 depression score
-tosc	SCS social connectedness score
-toas	ASISS acculturative stress score
+Here's your content formatted as a **README.md** section with **bold headings** and adjusted Markdown for **larger font size** using proper syntax. Markdown doesn't support actual font sizing natively, but using different heading levels (`#`, `##`, `###`) achieves the desired visual hierarchy on GitHub:
 
-📄 License
-This project is for educational purposes and analysis based on publicly shared, anonymized data. Check the source institution’s data usage guidelines if you plan to reuse it.
+````markdown
+# 📘 Project: Analyzing Students' Mental Health
+
+## 📌 Overview
+This project investigates how studying abroad affects the mental health of university students, using real survey data collected at a Japanese international university. The original 2018 study, published in 2019 and ethically approved, found that international students face higher risks of mental health challenges than domestic peers. It also identified **social connectedness** and **acculturative stress** as key predictors of depression.
+
+In this project, we used **PostgreSQL** to explore and analyze a dataset of 286 students to determine:
+
+- Whether international students show higher levels of depression.
+- How social connectedness and acculturative stress relate to depression scores.
+- Whether the length of stay in the host country is a contributing factor to mental health outcomes.
+
+---
+
+## 🧠 Key Mental Health Metrics
+The dataset includes scores from standardized psychological assessments:
+
+- **PHQ-9** (`todep`) — measures depression  
+- **SCS** (`tosc`) — measures social connectedness  
+- **ASISS** (`toas`) — measures acculturative stress  
+
+---
+
+## 🛠️ Tools Used
+- **PostgreSQL** for querying and analyzing data  
+- **DataCamp DataLab** as the notebook environment  
+- **GitHub** for version control and collaboration  
+
+---
+
+## 🔍 Insights Gained
+- International students generally show higher average PHQ-9 scores.
+- Depression correlates **negatively** with social connectedness and **positively** with acculturative stress.
+- The length of stay influences mental health outcomes: newly arrived students often show different average scores compared to those who have been in the country longer.
+
+---
+
+## 📊 Sample Query Used
+
+```sql
+SELECT stay,
+       COUNT(*) AS count_int,
+       ROUND(AVG(todep), 2) AS average_phq,
+       ROUND(AVG(tosc), 2) AS average_scs,
+       ROUND(AVG(toas), 2) AS average_as
+FROM students
+WHERE inter_dom = 'Inter'
+GROUP BY stay
+ORDER BY stay DESC
+LIMIT 9;
+````
+
+---
+
+## 📁 Dataset Fields
+
+| Field Name     | Description                              |
+| -------------- | ---------------------------------------- |
+| inter\_dom     | Student type (International or Domestic) |
+| japanese\_cate | Japanese language proficiency            |
+| english\_cate  | English language proficiency             |
+| academic       | Academic level (Undergraduate/Graduate)  |
+| age            | Age of the student                       |
+| stay           | Length of stay in years                  |
+| todep          | PHQ-9 depression score                   |
+| tosc           | SCS social connectedness score           |
+| toas           | ASISS acculturative stress score         |
+
+---
+
+## 📄 License
+
+This project is for **educational purposes** and analysis based on publicly shared, anonymized data. Check the source institution’s data usage guidelines if you plan to reuse it.
+
+```
+
+You can copy and paste this directly into your `README.md` file on GitHub. Let me know if you'd like to include badges, screenshots, or a section on how to reproduce the analysis locally!
+```
